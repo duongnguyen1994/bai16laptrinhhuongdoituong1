@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Thực hành] Xây dựng lớp Date</title>
+</head>
+<body>
+    <script>
+        function myDate(day, month, year){
+            this.Day = day;
+            this.Month = month;
+            this.Year = year;
+            this.Date = `${this.Day}/${this.Month}/${this.Year}`
+            this.getDay = function(){
+                return this.Day;
+            }
+            this.getMonth = function(){
+                return this.Month;
+            }
+            this.getYear = function(){
+                return this.Year;
+            }
+            this.setDay = function(day){
+                return this.Day = day;
+            }
+            this.setMonth = function(month){
+                return this.Month = month;
+            }
+            this.setYear = function(year){
+                return this.Year = year;
+            }
+            this.setDate = function(newDay, newMonth, newYear){
+                this.Day = newDay;
+                this.Month = newMonth;
+                this.Year = newYear;
+            }
+        }
+        var date = new myDate(24, 11, 2020)
+        let day = date.getDay();
+        let month = date.getMonth();
+        let year = date.getYear();
+        alert(`Ngày ${day} tháng ${month} năm ${year}`)
+        
+        date.setDate(1,1,2020);  // set date mới
+        alert(date.Date.toString())
+    </script>
+</body>
+</html>
