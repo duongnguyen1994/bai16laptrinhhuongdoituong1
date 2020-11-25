@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Bài tập] Xây dựng lớp mô tả hình chữ nhật</title> 
+</head>
+<body>
+    <canvas id="myCanvas" width="800px" height="600px" style="border:1px solid #d3d3d3;">
+    <script>
+        function Rectangle(long, short){
+            this.Long = long;
+            this.Short = short;
+            this.getArea = function(){
+                return this.Long * this.Short;
+            }
+            this.getCv = function(){
+                return (this.Long+this.Short)*2
+            }
+            this.drawRectangle = function(){
+                let ctx = document.getElementById('myCanvas').getContext('2d')
+                ctx.fillStyle = "#8e44ad";
+                ctx.fillRect(200,200,this.Long,this.Short)
+            }
+            this.getLongShort = function(l,s){
+                let ctx = document.getElementById('myCanvas').getContext('2d')
+                ctx.font = "30px Arial";
+                ctx.fillText(`Long: ${this.Long}, Short: ${this.Short}`,l,s)
+            }
+        }
+        let rectangle1 = new Rectangle(175,75)
+        rectangle1.drawRectangle();
+        rectangle1.Long = 200;
+        rectangle1.Short = 100;
+        rectangle1.getLongShort(150,350);
+    </script>
+</body>
+</html>
