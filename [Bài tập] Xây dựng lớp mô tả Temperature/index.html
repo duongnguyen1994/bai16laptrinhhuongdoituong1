@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Bài tập] Xây dựng lớp mô tả Temperature</title>
+</head>
+<body>
+    <script>
+        function Temperature(){
+            this.Celsius;
+            this.converseToFahrenheit = function(){
+                return this.Celsius*1.8 +32;
+            }
+            this.converseToKelvin = function(){
+                return this.Celsius + 273.15;
+            }
+        }
+
+        let temperature = new Temperature()
+        temperature.Celsius = 100;
+        document.write(`Độ F: ${temperature.converseToFahrenheit()}<br>`);
+        document.write(`Kelvin: ${temperature.converseToKelvin()}`);
+    </script>
+</body>
+</html>
