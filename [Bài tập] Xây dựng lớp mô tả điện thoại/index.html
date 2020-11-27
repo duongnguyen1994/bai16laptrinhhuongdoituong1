@@ -8,81 +8,72 @@
 </head>
 
 <body>
-    <input type="button" onclick="sentMessenger()" value="Send">
-    <input type="button" onclick="readMess()" value="Read">
+    <input type="button" value="Send" onclick="sentMessenger()">
+    <input type="button" value="Read" onclick="readInbox()">
     <script>
         function Mobile(power) {
-            let battery;
-            let draft = '';
-            let inbox = [];
-            let sent = [];
-            let mess = [];
-            this.power = power;
+            this.battery = 100;
+            this.draft = [];
+            this.inbox = [];
+            this.sent = [];
+            this.power = true;
             this.powerStatus = function () {
-                if (this.power == 'Off' || this.battery == 0) {
-                    return alert('Off')
-                } else return alert('On')
+                if (this.power) {
+                    return alert('On')
+                } else return alert('Off')
             }
-            this.OnOff = function () {
-                if (this.power == 'Off' || this.battery > 0) {
-                    return this.power = 'On'
-                } else return this.power = 'Off'
+            this.turnOn = function () {
+                if (this.power = false && this.battery > 0) {
+                    return this.power = true
+                } else return this.power = false
             }
             this.charge = function () {
-                if (this.battery < 100) {
-                    for (let i = this.battery; i <= 100; this.i++) {
-                        return this.battery = i;
-                    }
-                }
+                this.battery = 100;
             }
             this.newMess = function () {
-                if (this.power == 'On') {
-                    this.draft = prompt('Nhập tin nhắn');
+                if (this.power) {
+                    this.draft.push(prompt('Nhập tin nhắn'));
                     this.battery--;
                 }
-            }
-            this.receiveMess = function (mess) {
-                if (this.power == 'On') {
+            } 
+            this.sentMess = function (mobile) {
+                if (this.power) {
                     this.battery--;
-                    this.inbox = mess;
+                    let mess = this.draft.pop();
+                    this.sent.push(mess);
+                    mobile.inbox.push(mess);                 
                 }
             }
-            this.sentMess = function () {
-                if (this.power == 'On') {
-                    this.battery--;
-                    this.sent = this.draft;
-                    return this.mess = this.draft;
+            this.receiveMess = function (mobile) {
+                if (this.power) {
+                    
                 }
             }
             this.checkInbox = function () {
-                if (this.power == 'On') {
+                if (this.power) {
                     this.battery--;
-                    return alert(this.inbox)
+                    return alert(this.inbox[this.inbox.length-1])
                 }
             }
             this.checkSentMess = function () {
-                if (this.power == 'On') {
+                if (this.power) {
                     this.battery--;
-                    return alert(this.sent)
+                    return alert(this.sent[this.sent.length-1])
                 }
+            }      
+        }
+        // // Nokia
+        let nokia = new Mobile()
+        //     // Iphone
+            let iphone = new Mobile()
+            function sentMessenger(){
+                nokia.newMess();
+                nokia.sentMess(iphone);
             }
-        }
-
-        // Nokia
-        let nokia = new Mobile('On')
-        
-        function sentMessenger(){
-            nokia.newMess();        // soạn tin nhắn
-            nokia.sentMess()        // gửi tin nhắn
-        }
-        
-        // Iphone
-        let iphone = new Mobile('On')
-        
-        function readMess(){
-            iphone.receiveMess(nokia.mess)      //nhận tin nhắn từ nokia
-            iphone.checkInbox();                //đọc tin nhắn từ nokia
-        }
+            
+            function readInbox(){
+                iphone.checkInbox()
+            }
     </script>
 </body>
 
